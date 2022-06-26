@@ -41,6 +41,8 @@ dependencies {
     implementation 'com.ejlchina:okhttps-fastjson:3.5.2'
     implementation 'org.apache.commons:commons-lang3:3.4'
     implementation 'de.hdodenhof:circleimageview:2.1.0'
+    //  google权限管理框架
+    implementation 'pub.devrel:easypermissions:3.0.0'
 
 
 }

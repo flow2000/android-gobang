@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Fivechess">
         <activity
-            android:name=".ImageBottomDialog"
+            android:name=".MatchDialog"
             android:exported="false"
             tools:ignore="Instantiatable" />
         <activity
@@ -23,6 +23,9 @@
             android:exported="false" />
         <activity
             android:name=".AiActivity"
+            android:exported="false" />
+        <activity
+            android:name=".IntegralActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

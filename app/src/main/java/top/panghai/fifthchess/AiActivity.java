@@ -18,19 +18,18 @@ import top.panghai.fifthchess.view.AiChessView;
 public class AiActivity extends AppCompatActivity {
 
     private AiChessView view;
-    private static final int machineCode = 4399;
+    private static final int MACHINE_CODE = 4399;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        requestWindowFeature(Window.FEATURE_NO_TITLE);//隐藏标题
+        // 隐藏标题
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         // 全屏显示
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_ai);
         view = (AiChessView) findViewById(R.id.aiChessView);
+
     }
 
 
@@ -68,7 +67,7 @@ public class AiActivity extends AppCompatActivity {
                 mHandler.sendEmptyMessageDelayed(0, 2000);
             } else {
                 Intent intent = new Intent(AiActivity.this, MainActivity.class);
-                startActivityForResult(intent, machineCode);
+                startActivityForResult(intent, MACHINE_CODE);
             }
             return false;
         }

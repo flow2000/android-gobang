@@ -17,7 +17,7 @@
         android:id="@+id/avatar"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:src="@drawable/image1"
+        android:src="@drawable/avatar"
         android:layout_marginBottom="20dp" />
 
     <TextView
@@ -48,6 +48,17 @@
         android:background="#E9E9E9"
         android:gravity="center"
         android:text="联机对战"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/black" />
+
+    <Button
+        android:id="@+id/integral"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="#E9E9E9"
+        android:gravity="center"
+        android:text="积分排行"
         android:layout_marginTop="10dp"
         android:textColor="@color/black" />
 

@@ -19,42 +19,56 @@
             android:id="@+id/rivalNickname"
             android:layout_width="200px"
             android:layout_height="80px"
-            android:text="默认用户"
+            android:text=" ？"
             android:textColor="#F3F3F3"
             android:layout_gravity="center"
+            android:gravity="center"
             />
         <ImageView
             android:id="@+id/rivalAvatar"
             android:layout_width="200px"
             android:layout_height="200px"
-            android:src="@drawable/image1" />
+            android:src="@drawable/avatar" />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="250dp"
         android:layout_height="250dp"
-        android:gravity="center_vertical"
+        android:gravity="center_vertical|center_horizontal"
         android:orientation="vertical"
+
         android:background="@drawable/match"
         >
 
         <TextView
             android:id="@+id/matchTime"
             android:layout_width="250dp"
-            android:layout_height="100dp"
+            android:layout_height="40dp"
             android:gravity="bottom|center_horizontal"
             android:text="00:00"
             android:textColor="#FF0000"
             android:textSize="25dp" />
 
         <TextView
+            android:id="@+id/matchText"
             android:layout_width="250dp"
-            android:layout_height="100dp"
+            android:layout_height="20dp"
             android:gravity="center_horizontal"
             android:text="匹配中"
-            android:textColor="#3C3F41"
-            android:textSize="20dp" />
+            android:textColor="#52432C"
+            android:textSize="15dp" />
+
+        <Button
+            android:layout_width="115dp"
+            android:layout_height="115dp"
+            android:layout_marginRight="4dp"
+            android:background="@drawable/button_shape"
+            android:text="进入游戏"
+            android:textColor="#EBEBEB"
+            android:textSize="20dp"
+            android:visibility="gone"
+            />
 
     </LinearLayout>
 
@@ -79,7 +93,7 @@
             android:id="@+id/avatar"
             android:layout_width="200px"
             android:layout_height="200px"
-            android:src="@drawable/image1"
+            android:src="@drawable/avatar"
             android:layout_gravity="center"/>
 
     </LinearLayout>

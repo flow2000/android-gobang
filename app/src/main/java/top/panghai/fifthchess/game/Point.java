@@ -2,10 +2,11 @@ package top.panghai.fifthchess.game;
 
 import java.io.Serializable;
 
-public class Point implements Serializable{
+public class Point implements Serializable {
     private static final long serialVersionUID = 4958644533922626552L;
     public int x;
     public int y;
+    private boolean isLast;
 
     public Point() {
     }
@@ -29,9 +30,18 @@ public class Point implements Serializable{
         return this;
     }
 
+    public boolean isLast() {
+        return isLast;
+    }
+
+    public void setLast(boolean last) {
+        isLast = last;
+    }
+
     public Point(int x, int y) {
         this.x = x;
         this.y = y;
+        this.isLast = false;
     }
 
 
@@ -55,6 +65,6 @@ public class Point implements Serializable{
 
     @Override
     public String toString() {
-        return "Point("+x+","+y+")";
+        return "Point(" + x + "," + y + ")";
     }
 }

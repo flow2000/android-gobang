@@ -8,15 +8,14 @@ import android.util.Log;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.ejlchina.okhttps.HttpResult;
+import com.ejlchina.okhttps.OkHttps;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -36,26 +35,9 @@ public class LocalCacheUtils {
      * @return bitmap
      */
     public static Bitmap getBitmap(String s) {
-        try {
-            //把传过来的路径转成URL
-            URL url = new URL(s);
-            //获取连接
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            //使用GET方法访问网络
-            connection.setRequestMethod("GET");
-            //超时时间为10秒
-            connection.setConnectTimeout(10000);
-            //获取返回码
-            int code = connection.getResponseCode();
-            if (code == 200) {
-                InputStream inputStream = connection.getInputStream();
-                //使用工厂把网络的输入流生产Bitmap
-                return BitmapFactory.decodeStream(inputStream);
-            }
-        } catch (IOException e) {
-            Log.e("error", e.getMessage());
-        }
-        return null;
+        HttpResult hr = OkHttps.sync(s).get();
+        InputStream inputStream = hr.getBody().toByteStream();
+        return BitmapFactory.decodeStream(inputStream);
     }
 
     /**
@@ -150,6 +132,9 @@ public class LocalCacheUtils {
      * @param str     字符串
      */
     public static void writeString(Context context, String key, String str) {
+        if (context == null) {
+            return;
+        }
         SharedPreferences sharedPreferences = context.getSharedPreferences(FileName, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(key, str);
@@ -161,12 +146,16 @@ public class LocalCacheUtils {
      *
      * @param context 上下文
      * @param user    用户
+     * @param key     键值
      */
-    public static void writeUser(Context context, User user) {
+    public static void writeUser(Context context, User user, String key) {
+        if (context == null) {
+            return;
+        }
         SharedPreferences sharedPreferences = context.getSharedPreferences(FileName, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         String json = JSON.toJSONString(user);
-        editor.putString("user", json);
+        editor.putString(key, json);
         editor.apply();
     }
 
@@ -174,10 +163,14 @@ public class LocalCacheUtils {
      * 读取状态并转为对象
      *
      * @param context 上下文
+     * @param key     键值
      */
-    public static User readUser(Context context) {
+    public static User readUser(Context context, String key) {
+        if (context == null) {
+            return null;
+        }
         SharedPreferences pref = context.getSharedPreferences(FileName, Context.MODE_PRIVATE);
-        String json = pref.getString("user", "");
+        String json = pref.getString(key, "");
         if (!"".equals(json)) {
             try {
                 return JSONObject.parseObject(json, User.class);
@@ -196,6 +189,9 @@ public class LocalCacheUtils {
      * @param key     键
      */
     public static String readString(Context context, String key) {
+        if (context == null) {
+            return "";
+        }
         SharedPreferences pref = context.getSharedPreferences(FileName, Context.MODE_PRIVATE);
         return pref.getString(key, "");
     }

@@ -1,4 +1,4 @@
-package com.mobile.fivechess.domain;
+package top.panghai.fifthchess.entity;
 
 import java.io.Serializable;
 

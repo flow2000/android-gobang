@@ -1,9 +1,7 @@
 package top.panghai.fifthchess.entity;
 
 import android.graphics.Bitmap;
-
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
+import android.os.Binder;
 
 /**
  * 用户对象 user
@@ -11,8 +9,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  * @author panghai
  * @date 2022-06-15
  */
-public class User {
-    private static final long serialVersionUID = 1L;
+public class User extends Binder {
 
     /**
      * 用户id
@@ -23,6 +20,11 @@ public class User {
      * 用户昵称
      */
     private String nickname;
+
+    /**
+     * 用户头像
+     */
+    private Bitmap avatar;
 
     /**
      * 等级分
@@ -62,9 +64,10 @@ public class User {
      */
     private double rivalRating;
 
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
-    }
+    /**
+     * 是否先手
+     */
+    private boolean isFirst;
 
     public String getUserId() {
         return userId;
@@ -80,6 +83,14 @@ public class User {
 
     public void setNickname(String nickname) {
         this.nickname = nickname;
+    }
+
+    public Bitmap getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(Bitmap avatar) {
+        this.avatar = avatar;
     }
 
     public double getRating() {
@@ -138,8 +149,12 @@ public class User {
         this.rivalRating = rivalRating;
     }
 
-    public User() {
+    public boolean isFirst() {
+        return isFirst;
+    }
 
+    public void setFirst(boolean first) {
+        isFirst = first;
     }
 
     @Override
@@ -147,6 +162,7 @@ public class User {
         return "User{" +
                 "userId='" + userId + '\'' +
                 ", nickname='" + nickname + '\'' +
+                ", avatar=" + avatar +
                 ", rating=" + rating +
                 ", integral=" + integral +
                 ", rank=" + rank +
@@ -154,6 +170,7 @@ public class User {
                 ", matchTime=" + matchTime +
                 ", playRes=" + playRes +
                 ", rivalRating=" + rivalRating +
+                ", isFirst=" + isFirst +
                 '}';
     }
 }

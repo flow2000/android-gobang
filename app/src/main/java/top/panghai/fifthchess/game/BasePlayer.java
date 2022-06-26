@@ -5,7 +5,6 @@ import java.util.List;
 
 public abstract class BasePlayer implements IPlayer {
 
-
     //我已下的棋子
     protected List<Point> myPoints = new LinkedList<Point>();
     //棋盘
@@ -32,75 +31,76 @@ public abstract class BasePlayer implements IPlayer {
     }
 
     private final Point temp = new Point(0, 0);
+
     //判断输赢
-    public final boolean hasWin(){
-        if(myPoints.size()<5){
+    public final boolean hasWin() {
+        if (myPoints.size() < 5) {
             return false;
         }
-        Point point = myPoints.get(myPoints.size()-1);
+        Point point = myPoints.get(myPoints.size() - 1);
         int count = 1;
-        int x=point.getX(),y=point.getY();
+        int x = point.getX(), y = point.getY();
         //横向--
         temp.setX(x).setY(y);
-        while (myPoints.contains(temp.setX(temp.getX()-1)) && temp.getX()>=0 && count<5) {
-            count ++;
+        while (myPoints.contains(temp.setX(temp.getX() - 1)) && temp.getX() >= 0 && count < 5) {
+            count++;
         }
-        if(count>=5){
+        if (count >= 5) {
             return true;
         }
         temp.setX(x).setY(y);
-        while (myPoints.contains(temp.setX(temp.getX()+1)) && temp.getX()<maxX && count<5) {
-            count ++;
+        while (myPoints.contains(temp.setX(temp.getX() + 1)) && temp.getX() < maxX && count < 5) {
+            count++;
         }
-        if(count>=5){
+        if (count >= 5) {
             return true;
         }
         //纵向|
         count = 1;
         temp.setX(x).setY(y);
-        while (myPoints.contains(temp.setY(temp.getY()-1)) && temp.getY()>=0) {
-            count ++;
+        while (myPoints.contains(temp.setY(temp.getY() - 1)) && temp.getY() >= 0) {
+            count++;
         }
-        if(count>=5){
+        if (count >= 5) {
             return true;
         }
         temp.setX(x).setY(y);
-        while (myPoints.contains(temp.setY(temp.getY()+1)) && temp.getY()<maxY && count<5) {
-            count ++;
+        while (myPoints.contains(temp.setY(temp.getY() + 1)) && temp.getY() < maxY && count < 5) {
+            count++;
         }
-        if(count>=5){
+        if (count >= 5) {
             return true;
         }
         //正斜向 /
-        count =1;
+        count = 1;
         temp.setX(x).setY(y);
-        while (myPoints.contains(temp.setX(temp.getX()-1).setY(temp.getY()+1)) && temp.getX()>=0 && temp.getY()<maxY) {
-            count ++;
+        while (myPoints.contains(temp.setX(temp.getX() - 1).setY(temp.getY() + 1)) && temp.getX() >= 0 && temp.getY() < maxY) {
+            count++;
         }
-        if(count>=5){
+        if (count >= 5) {
             return true;
         }
         temp.setX(x).setY(y);
-        while (myPoints.contains(temp.setX(temp.getX()+1).setY(temp.getY()-1)) && temp.getX()<maxX && temp.getY()>=0 && count<6) {
-            count ++;
+        while (myPoints.contains(temp.setX(temp.getX() + 1).setY(temp.getY() - 1)) && temp.getX() < maxX && temp.getY() >= 0 && count < 6) {
+            count++;
         }
-        if(count>=5){
+        if (count >= 5) {
             return true;
         }
         //反斜 \
         count = 1;
         temp.setX(x).setY(y);
-        while (myPoints.contains(temp.setX(temp.getX()-1).setY(temp.getY()-1)) && temp.getX()>=0 && temp.getY()>=0) {
-            count ++;
+        while (myPoints.contains(temp.setX(temp.getX() - 1).setY(temp.getY() - 1)) && temp.getX() >= 0 && temp.getY() >= 0) {
+            count++;
         }
-        if(count>=5){
+        if (count >= 5) {
             return true;
         }
         temp.setX(x).setY(y);
-        while (myPoints.contains(temp.setX(temp.getX()+1).setY(temp.getY()+1)) && temp.getX()<maxX && temp.getY()<maxY && count<5) {
-            count ++;
+        while (myPoints.contains(temp.setX(temp.getX() + 1).setY(temp.getY() + 1)) && temp.getX() < maxX && temp.getY() < maxY && count < 5) {
+            count++;
         }
-        if(count>=5){
+        if (count >= 5) {
             return true;
         }
         return false;

@@ -805,6 +805,15 @@ public class BaseComputerAi extends BasePlayer {
             int i = random.nextInt(allFreePoints.size());
             result = allFreePoints.get(i);
         }
+
+        if (myPoints.size() > 0) {
+            Point point = myPoints.get(myPoints.size() - 1);
+            point.setLast(false);
+            myPoints.set(myPoints.size() - 1, point);
+        }
+
+        //设置为最后一步
+        result.setLast(true);
         //去除电脑下的棋子
         allFreePoints.remove(result);
         //加入到电脑棋子中，下棋了
